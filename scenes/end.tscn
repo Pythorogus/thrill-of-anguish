@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dag7dplt7w2ko"]
+
+[ext_resource type="Texture2D" uid="uid://b2b4n1l82ddg3" path="res://assets/sprites/end/Great_Final_Animation1.png" id="1_s4tl2"]
+[ext_resource type="Texture2D" uid="uid://d1uad6j8mpkha" path="res://assets/sprites/end/Great_Final_Animation2.png" id="2_8hmjt"]
+[ext_resource type="Texture2D" uid="uid://bs2h01biki61e" path="res://assets/sprites/end/Great_Final_Animation3.png" id="3_o5lv4"]
+[ext_resource type="Texture2D" uid="uid://crlq1q8gt2y4l" path="res://assets/sprites/end/Great_Final_Animation4.png" id="4_ee763"]
+[ext_resource type="Texture2D" uid="uid://dgdrnsr8vm50m" path="res://assets/sprites/end/Great_Final_Animation5.png" id="5_nl5ow"]
+[ext_resource type="Theme" uid="uid://cdo01q4b12a81" path="res://theme.tres" id="6_8hmjt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovs12"]
+atlas = ExtResource("1_s4tl2")
+region = Rect2(0, 0, 2560, 1600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oc5t2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovs12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8hmjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o5lv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ee763")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nl5ow")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="End" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(574.869, 303.623)
+scale = Vector2(0.448958, 0.435471)
+sprite_frames = SubResource("SpriteFrames_oc5t2")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 774.0
+offset_top = 12.0
+offset_right = 1136.0
+offset_bottom = 62.0
+theme = ExtResource("6_8hmjt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Thank you for playing"

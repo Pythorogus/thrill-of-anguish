@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://t0fcvwkgabtr"]
+
+[ext_resource type="Script" uid="uid://cwjlqaqfcf3ai" path="res://scripts/heart.gd" id="1_krgnv"]
+[ext_resource type="Texture2D" uid="uid://lewxe6fhdf5n" path="res://assets/sprites/heart.png" id="1_v30as"]
+[ext_resource type="AudioStream" uid="uid://chncycjia7vhw" path="res://assets/sounds/heartbeat.ogg" id="2_ycbwg"]
+[ext_resource type="AudioStream" uid="uid://brsy737y0uk1h" path="res://assets/music/thrill-of-anguish.ogg" id="4_txm48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krgnv"]
+size = Vector2(1221, 316.5)
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_krgnv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(541, 971)
+rotation = 0.433053
+texture = ExtResource("1_v30as")
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ycbwg")
+max_distance = 6000.0
+
+[node name="Heartzone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heartzone"]
+position = Vector2(1.5, -162.75)
+shape = SubResource("RectangleShape2D_krgnv")
+
+[node name="TimerAfterHit" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Metal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_txm48")
+volume_db = 9.274
+max_distance = 6000.0
+
+[connection signal="body_entered" from="Heartzone" to="." method="_on_heartzone_body_entered"]
+[connection signal="body_exited" from="Heartzone" to="." method="_on_heartzone_body_exited"]
+[connection signal="timeout" from="TimerAfterHit" to="." method="_on_timer_after_hit_timeout"]
