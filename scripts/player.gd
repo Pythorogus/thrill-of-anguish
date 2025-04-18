@@ -8,6 +8,7 @@ var can_control = true
 var can_hit = false
 var hit_sound_played = false
 var last_checkpoint : Vector2 = Vector2(289,727)
+var last_checkpoint_position_y_water : int
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
@@ -15,6 +16,16 @@ var last_checkpoint : Vector2 = Vector2(289,727)
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 @onready var heart: Node2D = $"../Heart"
 @onready var death_timer: Timer = $DeathTimer
+
+@onready var water: Node2D = $"../Water"
+@onready var platform3: AnimationPlayer = $"../Platform3/AnimationPlayer"
+@onready var platform4: AnimationPlayer = $"../Platform4/AnimationPlayer"
+@onready var enemy1: Node2D = $"../Enemies/Enemy"
+@onready var enemy2: Node2D = $"../Enemies/Enemy2"
+@onready var enemy3: Node2D = $"../Enemies/Enemy3"
+@onready var enemy4: Node2D = $"../Enemies/Enemy4"
+@onready var enemy5: Node2D = $"../Enemies/Enemy5"
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -77,6 +88,22 @@ func _on_death_timer_timeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color(1, 0, 0, 1), 0.2)
 	can_control = true
+	
+	# Reset de water en fonction du checkpoint
+	water.moveTo(last_checkpoint_position_y_water)
+	
+	#Reset des plateforms
+	platform3.stop(true)
+	platform3.play()
+	platform4.stop(true)
+	platform4.play()
+	
+	#Reset des ennemis
+	enemy1.position.x = 2791
+	enemy2.position.x = 2856
+	enemy3.position.x = 3140
+	enemy4.position.x = 2482
+	enemy5.position.x = 584
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "hit":

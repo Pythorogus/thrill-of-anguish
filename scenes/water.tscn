@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb46udv8khr65"]
+
+[ext_resource type="Script" uid="uid://birh0si5cljmu" path="res://scripts/water.gd" id="1_p1n2c"]
+[ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="1_s3811"]
+[ext_resource type="Texture2D" uid="uid://birj8bhncj1fh" path="res://assets/water.png" id="2_p1n2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewrsg"]
+size = Vector2(2808, 625)
+
+[node name="Water" type="Node2D"]
+script = ExtResource("1_p1n2c")
+
+[node name="Killzone" parent="." instance=ExtResource("1_s3811")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+z_index = 1
+position = Vector2(0, 337.5)
+shape = SubResource("RectangleShape2D_ewrsg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Killzone"]
+z_index = 6
+position = Vector2(0.500046, 325)
+scale = Vector2(2.44531, 1)
+texture = ExtResource("2_p1n2c")

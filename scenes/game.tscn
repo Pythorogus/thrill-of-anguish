@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bn242ewcbl1oy"]
+[gd_scene load_steps=46 format=4 uid="uid://bn242ewcbl1oy"]
 
 [ext_resource type="Script" uid="uid://b3626fcth2jtv" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dtbhn6frgc04f" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://3e0yppwujcro" path="res://assets/sprites/Masque_oeil.png" id="13_kvuet"]
 [ext_resource type="Texture2D" uid="uid://4ay25ls5p6ij" path="res://assets/sprites/Jeu_Larmes_Anim_V3.png" id="15_ir15t"]
 [ext_resource type="Script" uid="uid://c3mcnr66r8ohu" path="res://scripts/end_zone.gd" id="16_ca42v"]
+[ext_resource type="PackedScene" uid="uid://cb46udv8khr65" path="res://scenes/water.tscn" id="17_rysoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("3_u5sy4")
@@ -243,8 +244,6 @@ animations = [{
 size = Vector2(89, 263)
 
 [node name="Game" type="Node2D"]
-metadata/_edit_horizontal_guides_ = [1451.0]
-metadata/_edit_vertical_guides_ = [2279.0]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_gee14")
@@ -253,7 +252,7 @@ script = ExtResource("1_gee14")
 position = Vector2(2805, 7063)
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(298, 727)
+position = Vector2(2846, 6611)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -20)
@@ -290,12 +289,15 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="Killzone" parent="." instance=ExtResource("5_iywne")]
+[node name="Tears" parent="." instance=ExtResource("5_iywne")]
 position = Vector2(632, 929)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tears"]
 position = Vector2(138, 194)
 shape = SubResource("RectangleShape2D_gee14")
+
+[node name="Water" parent="." instance=ExtResource("17_rysoc")]
+position = Vector2(2841, 7050)
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -328,6 +330,7 @@ position = Vector2(584, 730)
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(289, 727)
+checkpoint_position_y_water = 927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint"]
 position = Vector2(369.25, 630.5)
@@ -335,6 +338,7 @@ shape = SubResource("RectangleShape2D_ir15t")
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(2280, 1450)
+checkpoint_position_y_water = 1650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint2"]
 position = Vector2(2279.13, 1366)
@@ -343,6 +347,7 @@ shape = SubResource("RectangleShape2D_trtic")
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("11_trtic")]
 position = Vector2(1, 0)
 checkpoint_position = Vector2(3356, 2355)
+checkpoint_position_y_water = 2800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint3"]
 position = Vector2(3450, 2361)
@@ -350,6 +355,7 @@ shape = SubResource("RectangleShape2D_ca42v")
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(3553, 3183)
+checkpoint_position_y_water = 3383
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint4"]
 position = Vector2(3477, 3175.5)
@@ -357,6 +363,7 @@ shape = SubResource("RectangleShape2D_rysoc")
 
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(2396, 4271)
+checkpoint_position_y_water = 4771
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint5"]
 position = Vector2(2396, 4155)
@@ -364,7 +371,8 @@ shape = SubResource("RectangleShape2D_ssvqc")
 
 [node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("11_trtic")]
 position = Vector2(2688, 6816)
-checkpoint_position = Vector2(2688, 6816)
+checkpoint_position = Vector2(2844, 6850)
+checkpoint_position_y_water = 7050
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint6"]
 position = Vector2(155, 30)

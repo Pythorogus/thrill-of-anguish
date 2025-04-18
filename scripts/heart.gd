@@ -19,6 +19,7 @@ extends Node2D
 @onready var enemy4: Node2D = $"../Enemies/Enemy4"
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
 @onready var end_zone: Area2D = $"../EndZone"
+@onready var water: Node2D = $"../Water"
 
 
 var timer = 0.0
@@ -79,3 +80,6 @@ func _on_timer_after_hit_timeout() -> void:
 	enemy5.visible = true;
 	enemy5.process_mode = Node.PROCESS_MODE_INHERIT
 	end_zone.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	# Water
+	water.start()
