@@ -25,6 +25,7 @@ extends Node2D
 var timer = 0.0
 var interval = 1 
 var player_z_index = 0
+var beaten = false
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -38,13 +39,10 @@ func _process(delta: float) -> void:
 func _on_heartzone_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.can_hit = true
-		player_z_index = body.z_index
-		body.z_index = 10
 
 func _on_heartzone_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		body.can_hit = false
-		body.z_index = player_z_index
 
 # ON HIT
 func anguish()-> void:
@@ -54,6 +52,7 @@ func anguish()-> void:
 
 # AFTER HIT
 func _on_timer_after_hit_timeout() -> void:
+	beaten = true
 	interval = 0.2
 	metal.play()
 	
@@ -61,7 +60,7 @@ func _on_timer_after_hit_timeout() -> void:
 	player.can_control = true
 	tears.visible = true
 	
-	#Texts
+	# Texts
 	run_back.visible = true
 	key_jump.visible = false
 	key_move.visible = false
@@ -77,5 +76,9 @@ func _on_timer_after_hit_timeout() -> void:
 	enemy4.process_mode = Node.PROCESS_MODE_INHERIT
 	enemy5.visible = true;
 	enemy5.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	# End zone
 	end_zone.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	# Water trigger
 	water_trigger.process_mode = Node.PROCESS_MODE_INHERIT

@@ -10,7 +10,6 @@ var go = false
 @onready var checkpoint5: Area2D = $"../Checkpoints/Checkpoint5"
 @onready var checkpoint6: Area2D = $"../Checkpoints/Checkpoint6"
 
-
 func _process(delta) -> void:
 	if (position.y <= 680) :
 		speed = 0
@@ -29,8 +28,6 @@ func _process(delta) -> void:
 		
 	if go :
 		position.y -= speed * delta
-		
-	
 
 func start() -> void :
 	go = true

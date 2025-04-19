@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://t0fcvwkgabtr"]
+[gd_scene load_steps=8 format=3 uid="uid://t0fcvwkgabtr"]
 
 [ext_resource type="Script" uid="uid://cwjlqaqfcf3ai" path="res://scripts/heart.gd" id="1_krgnv"]
 [ext_resource type="Texture2D" uid="uid://lewxe6fhdf5n" path="res://assets/sprites/heart.png" id="1_v30as"]
 [ext_resource type="AudioStream" uid="uid://chncycjia7vhw" path="res://assets/sounds/heartbeat.ogg" id="2_ycbwg"]
+[ext_resource type="Script" uid="uid://cxdlhxink5vys" path="res://scripts/player_zindex.gd" id="4_8nnyc"]
 [ext_resource type="AudioStream" uid="uid://brsy737y0uk1h" path="res://assets/music/thrill-of-anguish.ogg" id="4_txm48"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krgnv"]
 size = Vector2(1221, 316.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mtg8"]
+size = Vector2(1222, 323)
 
 [node name="Heart" type="Node2D"]
 script = ExtResource("1_krgnv")
@@ -28,6 +32,14 @@ collision_mask = 2
 position = Vector2(1.5, -162.75)
 shape = SubResource("RectangleShape2D_krgnv")
 
+[node name="PlayerZindex" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_8nnyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerZindex"]
+position = Vector2(0, -160.5)
+shape = SubResource("RectangleShape2D_4mtg8")
+
 [node name="TimerAfterHit" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -39,4 +51,6 @@ max_distance = 6000.0
 
 [connection signal="body_entered" from="Heartzone" to="." method="_on_heartzone_body_entered"]
 [connection signal="body_exited" from="Heartzone" to="." method="_on_heartzone_body_exited"]
+[connection signal="body_entered" from="PlayerZindex" to="PlayerZindex" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerZindex" to="PlayerZindex" method="_on_body_exited"]
 [connection signal="timeout" from="TimerAfterHit" to="." method="_on_timer_after_hit_timeout"]

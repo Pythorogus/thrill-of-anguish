@@ -30,7 +30,6 @@ var last_checkpoint_position_y_water : int
 @onready var enemy4: Node2D = $"../Enemies/Enemy4"
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
 
-
 func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
@@ -94,22 +93,23 @@ func die():
 	death_timer.start()
 	
 func _on_death_timer_timeout() -> void:
-	# Reset de water en fonction du checkpoint
-	water.moveTo(last_checkpoint_position_y_water)
+	if heart.beaten :
+		# Reset de water en fonction du checkpoint
+		water.moveTo(last_checkpoint_position_y_water)
+		
+		#Reset des ennemis slime
+		enemy1.position.x = 2791
+		enemy2.position.x = 2856
+		enemy3.position.x = 3140
+		enemy4.position.x = 2482
+		enemy5.position.x = 584
 	
 	#Reset des plateforms
 	platform3.stop(true)
 	platform3.play()
 	platform4.stop(true)
 	platform4.play()
-	
-	#Reset des ennemis
-	enemy1.position.x = 2791
-	enemy2.position.x = 2856
-	enemy3.position.x = 3140
-	enemy4.position.x = 2482
-	enemy5.position.x = 584
-	
+		
 	#Reset du joueur
 	position = last_checkpoint
 	var tween = create_tween()
