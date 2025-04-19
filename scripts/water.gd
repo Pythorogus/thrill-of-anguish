@@ -14,10 +14,18 @@ var go = false
 func _process(delta) -> void:
 	if (position.y <= 680) :
 		speed = 0
+	elif(position.y <= checkpoint2.checkpoint_position.y) :
+		speed = 150
 	elif(position.y <= checkpoint3.checkpoint_position.y) :
 		speed = 70
-	elif(position.y <= checkpoint6.checkpoint_position_y_water) :
+	elif(position.y <= 3290) :
+		speed = 150
+	elif(position.y <= 4245) :
 		speed = 125
+	elif(position.y <= 4900) :
+		speed = 100
+	elif(position.y <= checkpoint6.checkpoint_position_y_water) :
+		speed = 150
 		
 	if go :
 		position.y -= speed * delta

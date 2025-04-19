@@ -20,13 +20,11 @@ extends Node2D
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
 @onready var end_zone: Area2D = $"../EndZone"
 @onready var water: Node2D = $"../Water"
-
+@onready var water_trigger: Area2D = $"../WaterTrigger"
 
 var timer = 0.0
 var interval = 1 
-
-func _ready()->void:
-	print("Heart ready:", is_inside_tree())
+var player_z_index = 0
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -36,20 +34,20 @@ func _process(delta: float) -> void:
 		heartbeat.play()
 		tween.tween_property(sprite, "scale", Vector2(1.05, 1.05), 0.1)
 		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.1)
-		
+
 func _on_heartzone_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.can_hit = true
-		print(body)
+		player_z_index = body.z_index
+		body.z_index = 10
 
 func _on_heartzone_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		print("bye player")
 		body.can_hit = false
+		body.z_index = player_z_index
 
 # ON HIT
 func anguish()-> void:
-	print("anguish")
 	interval = -1
 	timer_after_hit.start()
 	key_hit.visible = false
@@ -80,6 +78,4 @@ func _on_timer_after_hit_timeout() -> void:
 	enemy5.visible = true;
 	enemy5.process_mode = Node.PROCESS_MODE_INHERIT
 	end_zone.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	# Water
-	water.start()
+	water_trigger.process_mode = Node.PROCESS_MODE_INHERIT

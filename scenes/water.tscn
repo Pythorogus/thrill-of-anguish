@@ -1,11 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb46udv8khr65"]
+[gd_scene load_steps=15 format=3 uid="uid://cb46udv8khr65"]
 
 [ext_resource type="Script" uid="uid://birh0si5cljmu" path="res://scripts/water.gd" id="1_p1n2c"]
 [ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="1_s3811"]
 [ext_resource type="Texture2D" uid="uid://birj8bhncj1fh" path="res://assets/water.png" id="2_p1n2c"]
+[ext_resource type="Texture2D" uid="uid://cedi1j82amsvc" path="res://assets/water_sprite.png" id="4_ewrsg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewrsg"]
-size = Vector2(2808, 625)
+size = Vector2(2815, 449)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwy5"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 0, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgdjl"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 648, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5exq1"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 1296, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pb3l"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 1944, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htah3"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 2592, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a35vf"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 3240, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6428"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 3888, 2816, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhskj"]
+atlas = ExtResource("4_ewrsg")
+region = Rect2(0, 4536, 2816, 648)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4bf1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgdjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5exq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pb3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htah3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a35vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6428")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhskj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Water" type="Node2D"]
 script = ExtResource("1_p1n2c")
@@ -14,11 +79,18 @@ script = ExtResource("1_p1n2c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 z_index = 1
-position = Vector2(0, 337.5)
+position = Vector2(6.5, 292.5)
 shape = SubResource("RectangleShape2D_ewrsg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Killzone"]
+visible = false
 z_index = 6
 position = Vector2(0.500046, 325)
 scale = Vector2(2.44531, 1)
 texture = ExtResource("2_p1n2c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 192)
+sprite_frames = SubResource("SpriteFrames_4bf1b")
+autoplay = "default"
+frame_progress = 0.92618

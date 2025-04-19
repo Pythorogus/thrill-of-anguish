@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckakxm0wq2d1j"]
+
+[ext_resource type="Texture2D" uid="uid://cmfdrrdhmepa6" path="res://assets/sprites/Poils_anim.png" id="2_mm3lp"]
+[ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="3_c6cow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l8pv"]
+size = Vector2(50, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyed7"]
+atlas = ExtResource("2_mm3lp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os8n5"]
+atlas = ExtResource("2_mm3lp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6cow"]
+atlas = ExtResource("2_mm3lp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxdhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyed7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os8n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6cow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Poils" type="Node2D"]
+z_index = 2
+
+[node name="Killzone" parent="." instance=ExtResource("3_c6cow")]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_0l8pv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_yxdhx")
+autoplay = "default"
+frame_progress = 0.349963

@@ -3,6 +3,10 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
 
+var is_on_ground = false
+var coyote_time = 0.2 # en secondes
+var coyote_timer = 0.0
+
 var is_attacking = false
 var can_control = true
 var can_hit = false
@@ -32,11 +36,17 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		is_on_ground = false
+		coyote_timer -= delta
+	else:
+		is_on_ground = true
+		coyote_timer = coyote_time
 
 	if can_control:
-		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		# Handle jump
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 0.0):
 			velocity.y = JUMP_VELOCITY
+			coyote_timer = 0.0
 			#jump_sound.play()
 
 			# Get the input direction: -1, 0, 1
@@ -84,11 +94,6 @@ func die():
 	death_timer.start()
 	
 func _on_death_timer_timeout() -> void:
-	position = last_checkpoint
-	var tween = create_tween()
-	tween.tween_property(animated_sprite, "modulate", Color(1, 0, 0, 1), 0.2)
-	can_control = true
-	
 	# Reset de water en fonction du checkpoint
 	water.moveTo(last_checkpoint_position_y_water)
 	
@@ -104,6 +109,12 @@ func _on_death_timer_timeout() -> void:
 	enemy3.position.x = 3140
 	enemy4.position.x = 2482
 	enemy5.position.x = 584
+	
+	#Reset du joueur
+	position = last_checkpoint
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 0, 0, 1), 0.2)
+	can_control = true
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "hit":
