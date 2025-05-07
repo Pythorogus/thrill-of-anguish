@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb46udv8khr65"]
+[gd_scene load_steps=16 format=3 uid="uid://cb46udv8khr65"]
 
 [ext_resource type="Script" uid="uid://birh0si5cljmu" path="res://scripts/water.gd" id="1_p1n2c"]
 [ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="1_s3811"]
 [ext_resource type="Texture2D" uid="uid://birj8bhncj1fh" path="res://assets/water.png" id="2_p1n2c"]
 [ext_resource type="Texture2D" uid="uid://cedi1j82amsvc" path="res://assets/water_sprite.png" id="4_ewrsg"]
+[ext_resource type="AudioStream" uid="uid://0r6yy2yeiada" path="res://assets/sounds/water_loop.wav" id="5_fiwy5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewrsg"]
 size = Vector2(2815, 449)
@@ -94,3 +95,9 @@ position = Vector2(8, 192)
 sprite_frames = SubResource("SpriteFrames_4bf1b")
 autoplay = "default"
 frame_progress = 0.540337
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fiwy5")
+volume_db = -2.0
+autoplay = true
+max_distance = 1450.0

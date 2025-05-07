@@ -13,6 +13,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $"../Player"
 @onready var heartzone: Area2D = $Heartzone
 @onready var tears: AnimatedSprite2D = $"../Salle oeil/Tears"
+@onready var tears_audio_stream_player_2d: AudioStreamPlayer2D = $"../Salle oeil/Tears/TearsAudioStreamPlayer2D"
 @onready var enemy: Node2D = $"../Enemies/Enemy"
 @onready var enemy2: Node2D = $"../Enemies/Enemy2"
 @onready var enemy3: Node2D = $"../Enemies/Enemy3"
@@ -59,6 +60,7 @@ func _on_timer_after_hit_timeout() -> void:
 	heartzone.monitoring = false
 	player.can_control = true
 	tears.visible = true
+	tears_audio_stream_player_2d.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	# Texts
 	run_back.visible = true

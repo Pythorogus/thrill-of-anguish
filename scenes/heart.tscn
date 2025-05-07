@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://lewxe6fhdf5n" path="res://assets/sprites/heart.png" id="1_v30as"]
 [ext_resource type="AudioStream" uid="uid://chncycjia7vhw" path="res://assets/sounds/heartbeat.ogg" id="2_ycbwg"]
 [ext_resource type="Script" uid="uid://cxdlhxink5vys" path="res://scripts/player_zindex.gd" id="4_8nnyc"]
-[ext_resource type="AudioStream" uid="uid://brsy737y0uk1h" path="res://assets/music/thrill-of-anguish.ogg" id="4_txm48"]
+[ext_resource type="AudioStream" uid="uid://bqogx8he1aqar" path="res://assets/music/thrill-of-anguishv2.ogg" id="5_8nnyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krgnv"]
 size = Vector2(1221, 316.5)
@@ -45,7 +45,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Metal" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_txm48")
+stream = ExtResource("5_8nnyc")
 volume_db = 9.274
 max_distance = 6000.0
 

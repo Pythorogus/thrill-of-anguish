@@ -11,7 +11,7 @@ var is_attacking = false
 var can_control = true
 var can_hit = false
 var hit_sound_played = false
-var last_checkpoint : Vector2 = Vector2(289,727)
+var last_checkpoint : Vector2 = Vector2(289,720)
 var last_checkpoint_position_y_water : int
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -48,7 +48,10 @@ func _physics_process(delta: float) -> void:
 			coyote_timer = 0.0
 			#jump_sound.play()
 
-			# Get the input direction: -1, 0, 1
+		if Input.is_action_just_released("jump") and velocity.y < 0:
+			velocity.y *= 0.5  # Couper la vélocité vers le haut pour raccourcir le saut
+
+		# Get the input direction: -1, 0, 1
 		var direction := Input.get_axis("move_left", "move_right")
 		
 		# Flip the Sprite

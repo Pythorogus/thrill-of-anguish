@@ -113,7 +113,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(24, 46)
+size = Vector2(24, 68)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -121,14 +121,14 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2.38419e-07, -45)
+position = Vector2(-4, -53)
 scale = Vector2(0.86328, 0.86328)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"hit"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -23)
+position = Vector2(0, -34)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]

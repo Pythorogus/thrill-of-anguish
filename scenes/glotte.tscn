@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnl7g1gfss16b"]
+
+[ext_resource type="Script" uid="uid://273pgcf2as2g" path="res://scripts/glotte.gd" id="1_h8wpp"]
+[ext_resource type="Texture2D" uid="uid://bkwex1lay5wrf" path="res://assets/sprites/Glotte.png" id="1_oycpn"]
+[ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="2_h8wpp"]
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_hysx4"]
+segments = PackedVector2Array(-48, 62, -31, 81, -59, 38, -59, 11, 85, 14, 84, 37, 85, 37, 74, 60, -49, 62, -58, 38, -30, 81, -10, 92, -10, 92, 12, 97, 12, 97, 34, 93, 34, 93, 58, 80, 57, 79, 73, 61, 85, 14, 75, -10, -59, 11, -49, -12, -49, -12, -26, -58, 75, -10, 51, -59, -25, -58, -16, -99, 50, -59, 39, -99, 39, -100, 36, -138, 35, -138, 36, -204, -15, -99, -11, -137, -11, -137, -12, -204)
+
+[node name="Glotte" type="Node2D"]
+script = ExtResource("1_h8wpp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 159)
+texture = ExtResource("1_oycpn")
+
+[node name="Killzone" parent="." instance=ExtResource("2_h8wpp")]
+position = Vector2(-1, 315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-12, -105)
+shape = SubResource("ConcavePolygonShape2D_hysx4")
