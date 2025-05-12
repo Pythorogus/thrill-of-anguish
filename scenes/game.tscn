@@ -290,7 +290,7 @@ z_index = 8
 position = Vector2(2805, 7063)
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(3543, 2757)
+position = Vector2(305, 726)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -20)
@@ -298,6 +298,14 @@ limit_bottom = 6900
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="FadeIn" type="ColorRect" parent="Player/Camera2D"]
+z_index = 10
+offset_left = -689.0
+offset_top = -673.0
+offset_right = 1113.0
+offset_bottom = 538.0
+color = Color(0, 0, 0, 1)
 
 [node name="WaterTrigger" type="Area2D" parent="."]
 process_mode = 4
@@ -553,6 +561,7 @@ process_mode = 4
 position = Vector2(411.238, -139.403)
 scale = Vector2(1.27308, 1.27308)
 stream = ExtResource("19_5newe")
+volume_db = -7.0
 autoplay = true
 max_distance = 650.0
 

@@ -22,7 +22,9 @@ rotation = 0.433053
 texture = ExtResource("1_v30as")
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
 stream = ExtResource("2_ycbwg")
+volume_db = 13.0
 max_distance = 6000.0
 
 [node name="Heartzone" type="Area2D" parent="."]
@@ -45,8 +47,9 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Metal" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2, 0)
 stream = ExtResource("5_8nnyc")
-volume_db = 9.274
+volume_db = 6.0
 max_distance = 6000.0
 
 [connection signal="body_entered" from="Heartzone" to="." method="_on_heartzone_body_entered"]
