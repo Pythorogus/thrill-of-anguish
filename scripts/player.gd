@@ -127,7 +127,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 # Hit the heart
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if animated_sprite.animation == "hit" and animated_sprite.frame == 3 and not hit_sound_played:
+	if animated_sprite.animation == "hit" and animated_sprite.frame == 4 and not hit_sound_played:
 		hit_sound.play()
 		can_control = false
 		heart.anguish()

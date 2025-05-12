@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://dtbhn6frgc04f"]
 
 [ext_resource type="Script" uid="uid://b5w8ru23xlqhn" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://ixcemmosqjux" path="res://assets/sprites/Stickman_sprite.png" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://dqm5c6myieyyt" path="res://assets/sprites/sprite_sheet_StickmanV2.png" id="2_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://e1h0ivuik5br" path="res://assets/sounds/jump.wav" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://2noyvhs43i58" path="res://assets/sounds/explosion.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://bggilrk3y18tb" path="res://assets/sounds/body_hit_finisher.wav" id="5_qlg0r"]
@@ -93,10 +93,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_tuyoq")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fjrip")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ur7pv")
@@ -178,10 +184,10 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4, -53)
+position = Vector2(-2.38419e-07, -45)
 scale = Vector2(0.86328, 0.86328)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"hit"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

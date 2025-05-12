@@ -1,18 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnl7g1gfss16b"]
+[gd_scene load_steps=13 format=3 uid="uid://bnl7g1gfss16b"]
 
 [ext_resource type="Script" uid="uid://273pgcf2as2g" path="res://scripts/glotte.gd" id="1_h8wpp"]
 [ext_resource type="Texture2D" uid="uid://bkwex1lay5wrf" path="res://assets/sprites/Glotte.png" id="1_oycpn"]
 [ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="2_h8wpp"]
+[ext_resource type="Texture2D" uid="uid://cqpopejbsjkne" path="res://assets/sprites/sprite_sheet_Glotte_v3.png" id="3_hysx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm1ue"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(0, 0, 192, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yx6w"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(192, 0, 192, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43utg"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(384, 0, 192, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gorcb"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(576, 0, 192, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1ym7"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(768, 0, 192, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh3gh"]
+atlas = ExtResource("3_hysx4")
+region = Rect2(960, 0, 192, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0036"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm1ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yx6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43utg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gorcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1ym7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh3gh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_hysx4"]
-segments = PackedVector2Array(-48, 62, -31, 81, -59, 38, -59, 11, 85, 14, 84, 37, 85, 37, 74, 60, -49, 62, -58, 38, -30, 81, -10, 92, -10, 92, 12, 97, 12, 97, 34, 93, 34, 93, 58, 80, 57, 79, 73, 61, 85, 14, 75, -10, -59, 11, -49, -12, -49, -12, -26, -58, 75, -10, 51, -59, -25, -58, -16, -99, 50, -59, 39, -99, 39, -100, 36, -138, 35, -138, 36, -204, -15, -99, -11, -137, -11, -137, -12, -204)
+segments = PackedVector2Array(-36, 60, -27, 75, -46, 39, -53, 13, 85, 14, 79, 36, 79, 36, 68, 58, -38, 61, -45, 40, -27, 75, -11, 88, -11, 88, 10, 89, 10, 88, 32, 84, 32, 84, 54, 74, 54, 74, 68, 58, 85, 14, 84, -11, -53, 11, -55, -13, -55, -14, -46, -59, 84, -11, 73, -62, -46, -61, -35, -100, 73, -61, 64, -100, 64, -100, 57, -136, 57, -136, 48, -210, -35, -100, -32, -135, -32, -134, -26, -208)
 
 [node name="Glotte" type="Node2D"]
 script = ExtResource("1_h8wpp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 159)
 texture = ExtResource("1_oycpn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 159)
+sprite_frames = SubResource("SpriteFrames_t0036")
+autoplay = "default"
+frame_progress = 0.203297
 
 [node name="Killzone" parent="." instance=ExtResource("2_h8wpp")]
 position = Vector2(-1, 315)

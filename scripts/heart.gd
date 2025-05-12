@@ -3,7 +3,7 @@ extends Node2D
 @onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
 @onready var metal: AudioStreamPlayer2D = $Metal
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D2
 @onready var timer_after_hit: Timer = $TimerAfterHit
 @onready var key_hit: Label = $"../KeyText/KeyHit"
 @onready var key_jump: Label = $"../KeyText/KeyJump"
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		var tween = create_tween()
 		timer = 0
 		heartbeat.play()
-		tween.tween_property(sprite, "scale", Vector2(1.05, 1.05), 0.1)
+		tween.tween_property(sprite, "scale", Vector2(1.15, 1.15), 0.1)
 		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.1)
 
 func _on_heartzone_body_entered(body: Node2D) -> void:
