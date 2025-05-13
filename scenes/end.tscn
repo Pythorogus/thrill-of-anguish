@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dag7dplt7w2ko"]
+[gd_scene load_steps=10 format=3 uid="uid://dag7dplt7w2ko"]
 
+[ext_resource type="Script" uid="uid://q0e186v31rv4" path="res://scripts/end_manager.gd" id="1_o5lv4"]
 [ext_resource type="Texture2D" uid="uid://b2b4n1l82ddg3" path="res://assets/sprites/end/Great_Final_Animation1.png" id="1_s4tl2"]
 [ext_resource type="Texture2D" uid="uid://d1uad6j8mpkha" path="res://assets/sprites/end/Great_Final_Animation2.png" id="2_8hmjt"]
 [ext_resource type="Texture2D" uid="uid://bs2h01biki61e" path="res://assets/sprites/end/Great_Final_Animation3.png" id="3_o5lv4"]
@@ -30,21 +31,32 @@ animations = [{
 "texture": ExtResource("5_nl5ow")
 }],
 "loop": false,
-"name": &"default",
+"name": &"cry",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s4tl2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="End" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(574.869, 303.623)
-scale = Vector2(0.448958, 0.435471)
-sprite_frames = SubResource("SpriteFrames_oc5t2")
-autoplay = "default"
-frame = 4
-frame_progress = 1.0
+[node name="EndManager" type="Node" parent="."]
+script = ExtResource("1_o5lv4")
 
-[node name="Label" type="Label" parent="."]
+[node name="EyeAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.451652, 0.437918)
+sprite_frames = SubResource("SpriteFrames_oc5t2")
+animation = &"cry"
+centered = false
+
+[node name="EndLabel" type="Label" parent="."]
+z_index = 2
 offset_left = 774.0
 offset_top = 12.0
 offset_right = 1136.0
@@ -53,3 +65,10 @@ theme = ExtResource("6_8hmjt")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
 text = "Thank you for playing"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -127.0
+offset_top = -50.0
+offset_right = -87.0
+offset_bottom = -10.0
+scale = Vector2(35.4716, 20.1844)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://bn242ewcbl1oy"]
+[gd_scene load_steps=56 format=4 uid="uid://bn242ewcbl1oy"]
 
 [ext_resource type="Script" uid="uid://b3626fcth2jtv" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dtbhn6frgc04f" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://0r6yy2yeiada" path="res://assets/sounds/water_loop.wav" id="19_5newe"]
 [ext_resource type="PackedScene" uid="uid://ckakxm0wq2d1j" path="res://scenes/poils.tscn" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://bnl7g1gfss16b" path="res://scenes/glotte.tscn" id="22_37s47"]
+[ext_resource type="AudioStream" uid="uid://yj664jd42sbt" path="res://assets/music/whisper-trail-2ogg-14429.mp3" id="23_bt5mj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5newe"]
 
@@ -287,7 +288,7 @@ metadata/_edit_vertical_guides_ = [1834.0]
 script = ExtResource("1_gee14")
 
 [node name="FadeIn" type="ColorRect" parent="."]
-z_index = 10
+z_index = 20
 offset_left = -2526.0
 offset_top = -1832.0
 offset_right = -724.0
@@ -299,7 +300,7 @@ z_index = 8
 position = Vector2(2805, 7063)
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(304, 736)
+position = Vector2(541, 705)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -20)
@@ -571,7 +572,6 @@ position = Vector2(786, 636)
 texture = ExtResource("12_dinhu")
 
 [node name="EndZone" type="Area2D" parent="."]
-process_mode = 4
 position = Vector2(248, 634)
 collision_mask = 2
 script = ExtResource("16_ca42v")
@@ -584,5 +584,8 @@ shape = SubResource("RectangleShape2D_1kice")
 [node name="Glotte" parent="." instance=ExtResource("22_37s47")]
 position = Vector2(3227, 2568)
 
+[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_bt5mj")
+
 [connection signal="body_entered" from="WaterTrigger" to="WaterTrigger" method="_on_body_entered"]
-[connection signal="body_entered" from="EndZone" to="EndZone" method="_on_body_entered"]
+[connection signal="body_entered" from="EndZone" to="GameManager" method="_on_end_zone_body_entered"]
