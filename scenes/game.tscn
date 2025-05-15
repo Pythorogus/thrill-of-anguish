@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://bn242ewcbl1oy"]
+[gd_scene load_steps=64 format=4 uid="uid://bn242ewcbl1oy"]
 
 [ext_resource type="Script" uid="uid://b3626fcth2jtv" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dtbhn6frgc04f" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -16,13 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://bgycwnduu6fpb" path="res://scenes/checkpoint.tscn" id="11_trtic"]
 [ext_resource type="Texture2D" uid="uid://do1qqkex8n4m5" path="res://assets/sprites/Jeu_Fond_Oeil_V3.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://3e0yppwujcro" path="res://assets/sprites/Masque_oeil.png" id="13_kvuet"]
-[ext_resource type="Script" uid="uid://c3mcnr66r8ohu" path="res://scripts/end_zone.gd" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://cb46udv8khr65" path="res://scenes/water.tscn" id="17_rysoc"]
 [ext_resource type="Texture2D" uid="uid://cedi1j82amsvc" path="res://assets/water_sprite.png" id="18_1kice"]
 [ext_resource type="AudioStream" uid="uid://0r6yy2yeiada" path="res://assets/sounds/water_loop.wav" id="19_5newe"]
 [ext_resource type="PackedScene" uid="uid://ckakxm0wq2d1j" path="res://scenes/poils.tscn" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://bnl7g1gfss16b" path="res://scenes/glotte.tscn" id="22_37s47"]
 [ext_resource type="AudioStream" uid="uid://yj664jd42sbt" path="res://assets/music/whisper-trail-2ogg-14429.mp3" id="23_bt5mj"]
+[ext_resource type="Script" uid="uid://q0e186v31rv4" path="res://scripts/end_manager.gd" id="24_suyxu"]
+[ext_resource type="Texture2D" uid="uid://b2b4n1l82ddg3" path="res://assets/sprites/end/Great_Final_Animation1.png" id="25_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://d1uad6j8mpkha" path="res://assets/sprites/end/Great_Final_Animation2.png" id="26_qouja"]
+[ext_resource type="Texture2D" uid="uid://bs2h01biki61e" path="res://assets/sprites/end/Great_Final_Animation3.png" id="27_wljb1"]
+[ext_resource type="Texture2D" uid="uid://crlq1q8gt2y4l" path="res://assets/sprites/end/Great_Final_Animation4.png" id="28_v2yb1"]
+[ext_resource type="Texture2D" uid="uid://dgdrnsr8vm50m" path="res://assets/sprites/end/Great_Final_Animation5.png" id="29_js0lu"]
+[ext_resource type="AudioStream" uid="uid://dguah811b1cim" path="res://assets/music/thril-of-anguish-end.ogg" id="29_suyxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5newe"]
 
@@ -279,6 +285,41 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kice"]
 size = Vector2(89, 263)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovs12"]
+atlas = ExtResource("25_sgl2t")
+region = Rect2(0, 0, 2560, 1600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxtfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovs12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_qouja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_wljb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_v2yb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_js0lu")
+}],
+"loop": false,
+"name": &"cry",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_sgl2t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
 metadata/_edit_horizontal_guides_ = [640.0, 4244.0, 3290.0]
@@ -300,7 +341,7 @@ z_index = 8
 position = Vector2(2805, 7063)
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(541, 705)
+position = Vector2(305, 735)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -20)
@@ -571,21 +612,57 @@ max_distance = 650.0
 position = Vector2(786, 636)
 texture = ExtResource("12_dinhu")
 
+[node name="Glotte" parent="." instance=ExtResource("22_37s47")]
+position = Vector2(3225, 2566)
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_bt5mj")
+
 [node name="EndZone" type="Area2D" parent="."]
+process_mode = 4
 position = Vector2(248, 634)
 collision_mask = 2
-script = ExtResource("16_ca42v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
 z_index = 2
 position = Vector2(59.5, -32.5)
 shape = SubResource("RectangleShape2D_1kice")
 
-[node name="Glotte" parent="." instance=ExtResource("22_37s47")]
-position = Vector2(3227, 2568)
+[node name="End" type="Node2D" parent="."]
+visible = false
+z_index = 21
 
-[node name="Whoosh" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_bt5mj")
+[node name="EndManager" type="Node" parent="End"]
+script = ExtResource("24_suyxu")
+
+[node name="EyeAnimation" type="AnimatedSprite2D" parent="End"]
+z_index = 1
+position = Vector2(1, -49)
+scale = Vector2(0.451652, 0.437918)
+sprite_frames = SubResource("SpriteFrames_gxtfn")
+animation = &"cry"
+centered = false
+
+[node name="EndLabel" type="Label" parent="End"]
+z_index = 2
+offset_left = 775.0
+offset_top = 12.0
+offset_right = 1137.0
+offset_bottom = 62.0
+theme = ExtResource("7_u5sy4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Thank you for playing"
+
+[node name="Background" type="ColorRect" parent="End"]
+offset_left = -126.0
+offset_top = -50.0
+offset_right = -86.0
+offset_bottom = -10.0
+scale = Vector2(35.4716, 20.1844)
+
+[node name="EndMusic" type="AudioStreamPlayer" parent="End"]
+stream = ExtResource("29_suyxu")
 
 [connection signal="body_entered" from="WaterTrigger" to="WaterTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EndZone" to="GameManager" method="_on_end_zone_body_entered"]

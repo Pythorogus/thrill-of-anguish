@@ -3,9 +3,10 @@ extends Node
 @onready var fade_in: ColorRect = $"../FadeIn"
 @onready var camera: Camera2D = $"../Player/Camera2D"
 @onready var player: CharacterBody2D = $"../Player"
-@onready var tears_audio_stream_player_2d: AudioStreamPlayer2D = $"../Salle oeil/Tears/TearsAudioStreamPlayer2D"
+@onready var tears_audio_stream_player: AudioStreamPlayer2D = $"../Salle oeil/Tears/TearsAudioStreamPlayer2D"
 @onready var whoosh: AudioStreamPlayer = $"../Whoosh"
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
+@onready var end_manager: Node = $"../End/EndManager"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,13 +40,17 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 		var tween = create_tween()
 		tween.tween_property(fade_in, "modulate:a", 1.0, 2.0)
 		
-		var tween2 = create_tween()
-		tween.tween_property(tears_audio_stream_player_2d, "volume_db", 0.0, 2.0)
+		print("é?")
+		#var tween2 = create_tween()
+		#tween2.tween_property(tears_audio_stream_player, "volume_db", 0.0, 2.0)
+		tears_audio_stream_player.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		var timer = get_tree().create_timer(4.0)
 		await timer.timeout
 		
-		ProjectSettings.set_setting("rendering/environment/defaults/default_clear_color","FFF")
+		#ProjectSettings.set_setting("rendering/environment/defaults/default_clear_color","FFF")
 		#ProjectSettings.save()
 		
-		get_tree().change_scene_to_file("res://scenes/end.tscn")
+		end_manager.end_game()
+				
+		#get_tree().change_scene_to_file("res://scenes/end.tscn")

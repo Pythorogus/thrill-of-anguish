@@ -14,9 +14,13 @@ var hit_sound_played = false
 var last_checkpoint : Vector2 = Vector2(289,720)
 var last_checkpoint_position_y_water : int
 
+@onready var glotte: Node2D = $"../Glotte"
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var scream_sound: AudioStreamPlayer2D = $Scream
+
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 @onready var heart: Node2D = $"../Heart"
 @onready var death_timer: Timer = $DeathTimer
@@ -31,7 +35,6 @@ var last_checkpoint_position_y_water : int
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
 
 func _physics_process(delta: float) -> void:
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -107,6 +110,9 @@ func _on_death_timer_timeout() -> void:
 		enemy4.position.x = 2482
 		enemy5.position.x = 584
 	
+	#Reset glotte
+	glotte.reset_position()
+	
 	#Reset des plateforms
 	platform3.stop(true)
 	platform3.play()
@@ -129,5 +135,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animated_sprite.animation == "hit" and animated_sprite.frame == 4 and not hit_sound_played:
 		hit_sound.play()
+		scream_sound.play()
 		can_control = false
 		heart.anguish()

@@ -17,6 +17,8 @@ func _process(delta) -> void:
 		speed = 150
 	elif(position.y <= checkpoint3.checkpoint_position.y) :
 		speed = 70
+	elif(position.y <= 2566) :
+		speed = 100
 	elif(position.y <= 3290) :
 		speed = 150
 	elif(position.y <= 4245) :
