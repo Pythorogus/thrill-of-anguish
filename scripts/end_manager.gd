@@ -11,7 +11,7 @@ func end_game():
 	eye_animation.modulate.a = 0
 	end_label.modulate.a = 0
 	
-	var screen_size = get_viewport().size
+	var screen_size = Vector2(1152,648) #écrit en dur pour la version web, sinon plutot : #DisplayServer.window_get_size() # get_viewport().size
 	end.position = Vector2(camera.global_position.x - (screen_size.x/2),camera.global_position.y - (screen_size.y/2))
 	
 	end.visible = true
