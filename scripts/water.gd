@@ -22,7 +22,7 @@ func _process(delta) -> void:
 	elif(position.y <= 3290) :
 		speed = 150
 	elif(position.y <= 4245) :
-		speed = 125
+		speed = 115
 	elif(position.y <= 4900) :
 		speed = 100
 	elif(position.y <= checkpoint6.checkpoint_position_y_water) :

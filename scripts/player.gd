@@ -66,7 +66,6 @@ func _physics_process(delta: float) -> void:
 		# Play animations
 		if is_on_floor():
 			if Input.is_action_just_pressed("hit") and not is_attacking and can_hit:
-				print("hit")
 				is_attacking = true
 				can_control = false
 				animated_sprite.play("hit")

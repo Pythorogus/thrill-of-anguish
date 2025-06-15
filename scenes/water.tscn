@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cb46udv8khr65"]
+[gd_scene load_steps=15 format=3 uid="uid://cb46udv8khr65"]
 
 [ext_resource type="Script" uid="uid://birh0si5cljmu" path="res://scripts/water.gd" id="1_p1n2c"]
 [ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="1_s3811"]
-[ext_resource type="Texture2D" uid="uid://birj8bhncj1fh" path="res://assets/water.png" id="2_p1n2c"]
 [ext_resource type="Texture2D" uid="uid://cedi1j82amsvc" path="res://assets/water_sprite.png" id="4_ewrsg"]
 [ext_resource type="AudioStream" uid="uid://0r6yy2yeiada" path="res://assets/sounds/water_loop.wav" id="5_fiwy5"]
 
@@ -82,13 +81,6 @@ script = ExtResource("1_p1n2c")
 z_index = 1
 position = Vector2(6.5, 292.5)
 shape = SubResource("RectangleShape2D_ewrsg")
-
-[node name="Sprite2D" type="Sprite2D" parent="Killzone"]
-visible = false
-z_index = 6
-position = Vector2(0.500046, 325)
-scale = Vector2(2.44531, 1)
-texture = ExtResource("2_p1n2c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, 192)

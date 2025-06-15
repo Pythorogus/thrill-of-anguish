@@ -8,7 +8,6 @@ extends Node
 @onready var enemy5: Node2D = $"../Enemies/Enemy5"
 @onready var end_manager: Node = $"../End/EndManager"
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.can_control = false
 	update_colorrect_size()
@@ -18,8 +17,7 @@ func _ready() -> void:
 	await timer.timeout
 	player.can_control = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_colorrect_size()
 
 func update_colorrect_size()->void:
@@ -40,7 +38,6 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 		var tween = create_tween()
 		tween.tween_property(fade_in, "modulate:a", 1.0, 2.0)
 		
-		print("é?")
 		#var tween2 = create_tween()
 		#tween2.tween_property(tears_audio_stream_player, "volume_db", 0.0, 2.0)
 		tears_audio_stream_player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -52,5 +49,5 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 		#ProjectSettings.save()
 		
 		end_manager.end_game()
-				
+		
 		#get_tree().change_scene_to_file("res://scenes/end.tscn")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnl7g1gfss16b"]
+[gd_scene load_steps=12 format=3 uid="uid://bnl7g1gfss16b"]
 
 [ext_resource type="Script" uid="uid://273pgcf2as2g" path="res://scripts/glotte.gd" id="1_h8wpp"]
-[ext_resource type="Texture2D" uid="uid://bkwex1lay5wrf" path="res://assets/sprites/Glotte.png" id="1_oycpn"]
 [ext_resource type="PackedScene" uid="uid://nlcancg6kj0m" path="res://scenes/killzone.tscn" id="2_h8wpp"]
 [ext_resource type="Texture2D" uid="uid://cqpopejbsjkne" path="res://assets/sprites/sprite_sheet_Glotte_v3.png" id="3_hysx4"]
 
@@ -60,11 +59,6 @@ segments = PackedVector2Array(-36, 60, -27, 75, -46, 39, -53, 13, 85, 14, 79, 36
 
 [node name="Glotte" type="Node2D"]
 script = ExtResource("1_h8wpp")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 159)
-texture = ExtResource("1_oycpn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 159)

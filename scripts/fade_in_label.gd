@@ -32,7 +32,7 @@ func pressEnterAnimation():
 	tween.tween_property(press_enter_label, "modulate:a", 0.0, 1.0)
 	tween.finished.connect(func(): pressEnterAnimation())
 	
-func _process(delta: float)->void:
+func _process(_delta: float)->void:
 	if canPressEnter and Input.is_action_just_pressed("enter"):
 		canPressEnter = false
 		enter_sfx.play()

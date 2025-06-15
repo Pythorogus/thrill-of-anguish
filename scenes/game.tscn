@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://bn242ewcbl1oy"]
+[gd_scene load_steps=66 format=4 uid="uid://bn242ewcbl1oy"]
 
 [ext_resource type="Script" uid="uid://b3626fcth2jtv" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dtbhn6frgc04f" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bgycwnduu6fpb" path="res://scenes/checkpoint.tscn" id="11_trtic"]
 [ext_resource type="Texture2D" uid="uid://do1qqkex8n4m5" path="res://assets/sprites/Jeu_Fond_Oeil_V3.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://3e0yppwujcro" path="res://assets/sprites/Masque_oeil.png" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://gmu8lcovm4q1" path="res://assets/sprites/checkpoints.png" id="16_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://cb46udv8khr65" path="res://scenes/water.tscn" id="17_rysoc"]
 [ext_resource type="Texture2D" uid="uid://cedi1j82amsvc" path="res://assets/water_sprite.png" id="18_1kice"]
 [ext_resource type="AudioStream" uid="uid://0r6yy2yeiada" path="res://assets/sounds/water_loop.wav" id="19_5newe"]
@@ -206,6 +207,10 @@ size = Vector2(47.5, 742)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trtic"]
 size = Vector2(26.25, 268)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qouja"]
+atlas = ExtResource("16_sgl2t")
+region = Rect2(0, 0, 128, 96)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ca42v"]
 size = Vector2(252, 48)
 
@@ -321,7 +326,6 @@ animations = [{
 }]
 
 [node name="Game" type="Node2D"]
-position = Vector2(-1, 0)
 metadata/_edit_horizontal_guides_ = [640.0, 4244.0, 3290.0]
 metadata/_edit_vertical_guides_ = [1834.0]
 
@@ -490,7 +494,7 @@ position = Vector2(2608, 2328)
 [node name="Poils6" parent="Poils" instance=ExtResource("19_264po")]
 position = Vector2(3113, 2328)
 
-[node name="Checkpoints" type="Node" parent="."]
+[node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(289, 640)
@@ -508,14 +512,30 @@ checkpoint_position_y_water = 1650
 position = Vector2(2279.13, 1366)
 shape = SubResource("RectangleShape2D_trtic")
 
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint2"]
+z_index = 1
+z_as_relative = false
+position = Vector2(2279, 1451)
+texture = SubResource("AtlasTexture_qouja")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 96)
+
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("11_trtic")]
 position = Vector2(1, 0)
 checkpoint_position = Vector2(3356, 2355)
-checkpoint_position_y_water = 2800
+checkpoint_position_y_water = 3000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint3"]
 position = Vector2(3450, 2361)
 shape = SubResource("RectangleShape2D_ca42v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint3"]
+z_index = 1
+z_as_relative = false
+position = Vector2(3354, 2352)
+texture = SubResource("AtlasTexture_qouja")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 96)
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(3553, 3183)
@@ -525,6 +545,14 @@ checkpoint_position_y_water = 3383
 position = Vector2(3224.5, 3175.5)
 shape = SubResource("RectangleShape2D_rysoc")
 
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint4"]
+z_index = 1
+z_as_relative = false
+position = Vector2(3551, 3186)
+texture = SubResource("AtlasTexture_qouja")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 96)
+
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("11_trtic")]
 checkpoint_position = Vector2(2396, 4271)
 checkpoint_position_y_water = 4771
@@ -532,6 +560,14 @@ checkpoint_position_y_water = 4771
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint5"]
 position = Vector2(2396, 4155)
 shape = SubResource("RectangleShape2D_ssvqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint5"]
+z_index = 1
+z_as_relative = false
+position = Vector2(2399, 4272)
+texture = SubResource("AtlasTexture_qouja")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 96)
 
 [node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("11_trtic")]
 position = Vector2(2686, 6558)
